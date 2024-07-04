@@ -1,6 +1,6 @@
 #clockcontainer{
     position: relative;
-    height: 40vw;
+    height: 100vh;
     width: 40vw;
     background-image: url(clock1.png);
     background-size: 100%;
