@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analog Clock</title>
+    <title>Analog Clock · enhanced</title>
+    <!-- improved base styles & smooth fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
-    <script src="index.js"></script>
-</head> 
+</head>
+
 <body>
-    <div id="clockcontainer">
-        <div id="hour"></div>
-        <div id="minute"></div>
-        <div id="second"></div>
+
+    <div class="clock-wrapper">
+        <!-- main analog clock container -->
+        <div id="clockcontainer">
+            <div id="hour"></div>
+            <div id="minute"></div>
+            <div id="second"></div>
+        </div>
+
+        <!-- digital readout with live time (matches analog) -->
+        <div class="digital-box">
+            <span id="digital-hour">12</span>
+            <small>:</small>
+            <span id="digital-minute">00</span>
+            <small>:</small>
+            <span id="digital-second">00</span>
+            <small id="ampm">AM</small>
+        </div>
     </div>
-    <div class="footer">Created By Harsh Yadav</div>
+
+    <!-- signature footer (unchanged author, enhanced style) -->
+    <div class="footer">Created By <strong>Harsh Yadav</strong></div>
+
+    <script src="index.js"></script>
 </body>
+
 </html>
