@@ -1,54 +1,187 @@
-body{
-    background-color: #0d1117;
-}
-#clockcontainer{
-    position: relative;
-    height: 40vh;
-    width: 40vh;
-    background-image: url(clock1.png);
-    background-size: 100%;
-    background-color: #9198a1;
-    border-radius: 50%;
-    margin: auto;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#hour,#minute,#second{
+body {
+    background: linear-gradient(145deg, #0b121c 0%, #1a2635 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* modern glass card around clock */
+.clock-wrapper {
+    background: rgba(25, 35, 50, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 64px;
+    padding: 30px 25px 35px 25px;
+    box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(120, 140, 170, 0.25);
+}
+
+#clockcontainer {
+    position: relative;
+    height: 42vh;
+    width: 42vh;
+    min-height: 260px;
+    min-width: 260px;
+    background: radial-gradient(circle at 30% 30%, #f0f5fa, #b9c7d9 80%, #7f8fa3);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="%23212c3a" stroke-width="1.2" opacity="0.25"><circle cx="50" cy="50" r="48"/><path d="M50 2v12M50 86v12M2 50h12M86 50h12"/><path d="M15 15l7 7M78 78l7 7M15 85l7-7M78 22l7-7"/><circle cx="50" cy="50" r="3" fill="%23212c3a"/></svg>');
+    background-size: 105%, cover;
+    background-position: center, center;
+    border-radius: 50%;
+    box-shadow:
+        0 20px 35px rgba(0, 0, 0, 0.6),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.4),
+        inset 0 8px 10px rgba(255, 255, 255, 0.3),
+        0 0 0 8px #1e2a36,
+        0 0 0 12px #2c3a4b;
+    transition: box-shadow 0.2s;
+    margin: 0 auto;
+}
+
+/* decorative metal centre cap */
+#clockcontainer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10%;
+    height: 10%;
+    background: radial-gradient(circle at 35% 35%, #d0dbe8, #4e5f72);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px black, inset 0 1px 3px rgba(255, 255, 255, 0.7);
+    z-index: 10;
+    border: 1px solid #17212b;
+}
+
+/* all hands share base style */
+#hour,
+#minute,
+#second {
     position: absolute;
     background: black;
-    border-radius: 12px;
-    transform-origin: bottom;
+    border-radius: 20px;
+    transform-origin: bottom center;
+    left: 49.5%;
+    /* fine-tuned centre alignment */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 240, 0.15);
+    transition: transform 0.1s cubic-bezier(0.4, 2.5, 0.6, 1);
+    /* subtle tick-smooth */
 }
 
-#hour{
-    right: 49%;
-    height: 25%;
-    width: 2%;
-    top: 25%;
-    opacity: 0.8;
-}
-#minute{
-    right: 49%;
-    height: 30%;
-    width: 2%;
-    top: 20%;
-    opacity: 0.6;
-}
-#second{
-    right: 49%;
-    height: 35%;
-    width: 2%;
-    top: 15%;
-    opacity: 0.4;
+/* hour hand - bold & dark */
+#hour {
+    height: 26%;
+    width: 1.8%;
+    bottom: 50%;
+    background: #12181f;
+    background: linear-gradient(180deg, #1f2b36 0%, #0a0f14 90%);
+    border: 1px solid #384b5e;
 }
 
-.footer {
-    position: fixed;
+/* minute hand - slimmer */
+#minute {
+    height: 34%;
+    width: 1.5%;
+    bottom: 50%;
+    background: #1f2e3c;
+    background: linear-gradient(180deg, #2a3a4a 0%, #0f1a23 90%);
+    border: 1px solid #4c637b;
+}
+
+/* second hand – elegant red/rose gold */
+#second {
+    height: 38%;
+    width: 1.2%;
+    bottom: 50%;
+    background: #c55042;
+    background: linear-gradient(180deg, #f07c6a, #aa3e30 90%);
+    border: 1px solid #ffba9f;
+    box-shadow: 0 0 8px #f77b5e;
+}
+
+/* digital display – clean & modern */
+.digital-box {
+    margin-top: 30px;
+    background: #1a2532e0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 100px;
+    padding: 14px 28px;
+    border: 1px solid #50668060;
+    box-shadow: inset 0 2px 3px #10161e, 0 12px 20px -10px black;
+    color: #d9e9ff;
+    font-size: 2.3rem;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-shadow: 0 0 8px #6588b3, 0 2px 3px black;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 0;
-    width: 100%;
-    color: #f0f6fc; /* Footer text color */
+    gap: 12px;
+    align-items: baseline;
+    font-variant-numeric: tabular-nums;
+}
+
+.digital-box span {
+    background: #0e161f;
+    padding: 6px 16px 6px 20px;
+    border-radius: 60px;
+    box-shadow: inset 0 1px 5px black, 0 2px 0 #3a4c62;
+    color: #d1e9ff;
+    font-weight: 500;
+}
+
+.digital-box small {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    font-weight: 300;
+    margin-left: -4px;
+}
+
+/* footer with clean signature */
+.footer {
+    margin-top: 35px;
+    color: #b7cdff;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.1rem;
+    font-weight: 300;
+    text-shadow: 0 2px 5px black;
+    border-top: 1px dashed #4f6680;
+    padding-top: 18px;
+    width: 100%;
+    max-width: 500px;
+    letter-spacing: 1px;
+    backdrop-filter: blur(2px);
+}
+
+.footer strong {
+    font-weight: 500;
+    color: white;
+    background: #27354660;
+    padding: 2px 12px;
+    border-radius: 60px;
+}
+
+/* responsive */
+@media (max-width: 450px) {
+    .digital-box {
+        font-size: 1.7rem;
+        padding: 10px 15px;
+        gap: 6px;
+    }
+
+    #clockcontainer {
+        height: 38vh;
+        width: 38vh;
+    }
 }
